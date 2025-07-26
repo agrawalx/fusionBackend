@@ -23,7 +23,7 @@ contract EscrowFactory {
     ) external payable returns (address) {
         // Transfer tokens from maker to the new escrow contract
         require(msg.value >= MIN_SAFETY_DEPOSIT, "Insufficient safety deposit");
-        EscrowSrc escrow = new EscrowSrc(
+        EscrowSrc escrow = new EscrowSrc{value: msg.value}(
             token,
             maker,
             resolver,
